@@ -1,7 +1,7 @@
 pipeline {
     
     agent {
-        label "linuxbuildnode"
+        label "new_slave_pipeline"
     }
     
     
