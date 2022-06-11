@@ -40,15 +40,15 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<h2>Welcome to LinuxWorld, India , in fully automated jenkins</h2>
-			<h3>Contact training@lwindia.com or mob 9351009002</h3>
+			<h2>Welcome to Zeetron Networks, We are working in fully automated jenkins</h2>
+			<h3>Contact us at info@zeetronnetwork.com or 8989898989</h3>
 		</div>	
 	</div>
 
 
 	<hr>
 	<footer>
-		<p>&copy; LW 2022</p>
+		<p>&copy; Zeetron 2022</p>
 	</footer>
 </div>
 
