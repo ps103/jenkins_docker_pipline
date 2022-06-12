@@ -15,12 +15,12 @@ pipeline {
             }
             
         }
-        stage('Deploy on testing') {
+        /*stage('Deploy on testing') {
             steps {
 		// sh 'pwd'
 		// sh "sudo docker build -t srronak/javatest-app:${BUILD_TAG} ."
 		}
-	}        
+	} */       
         stage('Pushing image to docker hub') {
 	    agent {    
 		label "docker-slave"
