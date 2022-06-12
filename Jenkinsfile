@@ -21,8 +21,8 @@ pipeline {
         }
         stage('Deploy on testing') {
             steps {
-                sh 'whoami'
-		sh 'pwd'
+		// sh 'pwd'
+		sh 'docker build -t srronak11/javaweb:{BUILD_TAG} .'
 		}
 	}        
    
