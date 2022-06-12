@@ -1,9 +1,5 @@
 pipeline {
     
-    agent {
-        label "new_slave_pipeline"
-    }
-    
     
     stages {
         stage('SCM') {
@@ -20,6 +16,10 @@ pipeline {
             
         }
         stage('Deploy on testing') {
+	    agent {    
+	    	label "new_slave_pipeline"
+		label "docker-slave"
+	}
             steps {
 		// sh 'pwd'
 		sh "sudo docker build -t srronak/javatest-app:${BUILD_TAG} ."
@@ -36,6 +36,14 @@ pipeline {
 	}        
    
       }
+      stage('Deploy on Docker Container') {
+      	agent {
+		label "docker-slave"
+		}
+	steps {
+	
+		sh "docker run -dit -name web1 -p 8080 
+
    }
     
 }
