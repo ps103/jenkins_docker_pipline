@@ -16,16 +16,16 @@ pipeline {
             
         }
         stage('Deploy on testing') {
-	    agent {    
-	    	label "new_slave_pipeline"
-		label "docker-slave"
-	}
             steps {
 		// sh 'pwd'
 		sh "sudo docker build -t srronak/javatest-app:${BUILD_TAG} ."
 		}
 	}        
         stage('Pushing image to docker hub') {
+	    agent {    
+	    	label "new_slave_pipeline"
+		label "docker-slave"
+	}
             steps {
 	        withCredentials([string(credentialsId: 'Docker_hub_passwd', variable: 'Docker_hub_passwd_var')]) {
 
@@ -42,8 +42,10 @@ pipeline {
 		}
 	steps {
 	
-		sh "docker run -dit -name web1 -p 8080 
+		sh "docker run -dit --name web1 -p 8080 srronak/javatest-app:${BUILD_TAG}"
+		}
 
+	}
    }
     
 }
