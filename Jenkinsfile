@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy on testing') {
             steps {
 		// sh 'pwd'
-		sh "docker build -t dockerimage:{BUILD_TAG} ."
+		sh "docker build -t dockerimage:${BUILD_TAG} ."
 
 		}
 	}        
