@@ -40,7 +40,7 @@ pipeline {
 		label "docker-slave"
 		}
 	steps {
-	
+		sh "sudo docker pull srronak/javatest-app:${BUILD_TAG}"
 		sh "sudo docker run -dit --name web1 -p 8080 srronak/javatest-app:${BUILD_TAG}"
 		}
 
