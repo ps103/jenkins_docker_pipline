@@ -41,7 +41,7 @@ pipeline {
 		}
 	steps {
 	
-		sh "docker run -dit --name web1 -p 8080 srronak/javatest-app:${BUILD_TAG}"
+		sh "sudo ocker run -dit --name web1 -p 8080 srronak/javatest-app:${BUILD_TAG}"
 		}
 
 	}
