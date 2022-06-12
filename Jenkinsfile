@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git 'https://github.com/vimallinuxworld13/jenkins-docker-maven-java-webapp.git'
-                
+                git 'https://github.com/sr98877/pipeline-code.git'
             }
             
         }
@@ -20,7 +19,12 @@ pipeline {
             }
             
         }
-        
+        stage('Deploy on testing') {
+            steps {
+                sh 'whoami
+		}
+	}        
+   
    }
     
     
