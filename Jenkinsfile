@@ -23,15 +23,14 @@ pipeline {
 	}        
         stage('Pushing image to docker hub') {
 	    agent {    
-	    	label "new_slave_pipeline"
 		label "docker-slave"
-	}
+		}
             steps {
 	        withCredentials([string(credentialsId: 'Docker_hub_passwd', variable: 'Docker_hub_passwd_var')]) {
 
 		sh "sudo docker login -u srronak -p ${Docker_hub_passwd_var}"
 		}
-		sh "sudo docker push srronak/javatest-app:${BUILD_TAG}"
+		//sh "sudo docker push srronak/javatest-app:${BUILD_TAG}"
 
 	}        
    
