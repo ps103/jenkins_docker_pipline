@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy on testing') {
             steps {
 		// sh 'pwd'
-		sh "sudo docker build -t dockerimage:${BUILD_TAG} ."
+		sh "sudo docker build -t srronak/javatest-app:${BUILD_TAG} ."
 		}
 	}        
         stage('Pushing image to docker hub') {
