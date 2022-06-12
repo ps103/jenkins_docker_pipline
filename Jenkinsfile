@@ -31,7 +31,7 @@ pipeline {
 
 		sh "sudo docker login -u srronak -p ${Docker_hub_passwd_var}"
 		}
-		sh "sudo docker push srronak/java-test-app:${BUILD_TAG}"
+		sh "sudo docker push srronak/javatest-app:${BUILD_TAG}"
 
 	}        
    
