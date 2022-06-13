@@ -69,7 +69,7 @@ pipeline {
 
 	stage("Approval status") {
 		agent {
-			label "pipeline1"
+			label "pipeline"
 			}
 		steps {
 		script {
@@ -80,15 +80,16 @@ pipeline {
 	}
         stage('Deploy webAPP in QA/Test Env') {
       	    agent {
-		label "pipeline1"    
+		label "pipeline"    
 		}
             steps {
                
                sshagent(['QA_ENV_SSH_CRED']) {
     
-                    sh "ssh  -o  StrictHostKeyChecking=no ec2-user@13.233.100.238 sudo docker rm -f myjavaapp"
-                    sh "ssh ec2-user@13.233.100.238 sudo docker run  -d  -p  8080:8080 --name myjavaapp   vimal13/javaweb:${BUILD_TAG}"
-
+                    sh "ssh  -o  StrictHostKeyChecking=no ec2-user@15.207.106.62 sudo docker rm -f web1"
+                    sh "ssh ec2-user@13.233.100.238 sudo docker run  -d  -p  8080:8080 --name web1 srronak/javatest-app:jenkins-pipeline-code-17}"
+	         }
+	}
    }
     
 }
