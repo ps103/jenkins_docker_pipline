@@ -21,7 +21,7 @@ pipeline {
             }
             
         }
-        stage('Deploy on testing') {
+        /*stage('Deploy on testing') {
 	    agent {    
 		label "pipeline"    
 		}
@@ -30,15 +30,15 @@ pipeline {
 		// sh 'pwd'
 		 sh "sudo docker build -t srronak/javatest-app:${BUILD_TAG} ."
 		}
-	}        
+	} */       
         stage('Pushing image to docker hub') {
 	    agent {    
 		label "pipeline"    
 		}
             steps {
-	        withCredentials([string(credentialsId: 'Docker_hub_passwd', variable: 'Docker_hub_passwd_var')]) {
+	        withCredentials([string(credentialsId: 'docker_hub_passwd', variable: 'Docker_hub_passwd_var')]) {
 
-		sh "sudo docker login -u srronak -p ${Docker_hub_passwd_var}"
+		sh "sudo docker login -u srronak -p ${docker_hub_passwd_var}"
 		}
 		//sh "sudo docker push srronak/javatest-app:${BUILD_TAG}"
 
