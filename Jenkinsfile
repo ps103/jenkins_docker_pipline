@@ -72,13 +72,13 @@ pipeline {
 			label "pipeline"
 			}
 		steps {
-		script {
-			Boolean user_input = input(id: 'Process1', message: 'Enter your confirmation')
-			echo "user input : ${user_input}"
+		script {  
+                Boolean userInput = input(id: 'Proceed1', message: 'Promote build?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']])
+                echo 'userInput: ' + userInput
 			}
-		}
+	 	}
 	}
-        stage('Deploy webAPP in QA/Test Env') {
+	stage('Deploy webAPP in QA/Test Env') {
       	    agent {
 		label "pipeline"    
 		}
