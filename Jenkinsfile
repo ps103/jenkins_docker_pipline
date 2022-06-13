@@ -4,7 +4,7 @@ pipeline {
     stages {
 	agent {    
 		label "pipeline"    
-		}
+	}
         stage('SCM') {
             steps {
                 git 'https://github.com/sr98877/pipeline-code.git'
