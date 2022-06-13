@@ -84,7 +84,7 @@ pipeline {
 		}
             steps {
                
-               sshagent(['QA_ENV_SSH_CRED']) {
+               sshagent(['ec2-access-access-cred']) {
     
                     //sh "ssh  -o  StrictHostKeyChecking=no ec2-user@15.207.106.62 sudo docker rm -f web1"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.100.238 sudo docker run  -d  -p  49153:8080 --name web1 srronak/javatest-app:jenkins-pipeline-code-17"
