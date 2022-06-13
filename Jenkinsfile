@@ -62,7 +62,7 @@ pipeline {
 		}
 	steps {
 		retry(5) {
-		sh "curl --silent http://35.154.193.35:49153/java-web-app | grep -iname zeetron"
+		sh "curl --silent http://35.154.193.35:49153/java-web-app/ | grep -iname zeetron"
 		}
 	   }
 	}
