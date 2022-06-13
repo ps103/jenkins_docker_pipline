@@ -55,7 +55,7 @@ pipeline {
 		}
 
 	}
-	stage('QAT testing") {
+	stage('QAT testing') {
 	agent { 
 		label "pipeline"
 		}
