@@ -31,7 +31,7 @@ pipeline {
 		 sh "sudo docker build -t srronak/javatest-app:${BUILD_TAG} ."
 		}
 	} */       
-        stage('Pushing image to docker hub') {
+        /*stage('Pushing image to docker hub') {
 	    agent {    
 		label "pipeline"    
 		}
@@ -41,16 +41,15 @@ pipeline {
 		sh "sudo docker login -u srronak -p ${docker_hub_passwd_var}"
 		}
 		//sh "sudo docker push srronak/javatest-app:${BUILD_TAG}"
-
 	}        
    
-      }
+      }*/
       stage('Deploy on Docker Container') {
       	agent {
 		label "pipeline"    
 		}
 	steps {
-		sh "sudo docker rm -f ${docker ps -a}"
+		sh "sudo docker rm -f web1}"
 		sh "sudo docker rmi ${docker images -a q}"
 		sh "sudo docker pull srronak/javatest-app:jenkins-pipeline-code-17"
 		sh "sudo docker run -dit --name web1 -p 8080 srronak/javatest-app:jenkins-pipeline-code-17"
@@ -79,17 +78,17 @@ pipeline {
 			}
 		}
 	}
-      stage('Deploy on Docker Container on Prod Env') {
-      	agent {
-		label "pipeline2"    
+        stage('Deploy webAPP in QA/Test Env') {
+      	    agent {
+		label "pipeline1"    
 		}
-	steps {
-		sh "sudo docker pull srronak/javatest-app:jenkins-pipeline-code-17"
-		sh "sudo docker rm -f ${docker ps -a}"
-		sh "sudo docker run -dit --name web1 -p 8080 srronak/javatest-app:jenkins-pipeline-code-17"
-		}
+            steps {
+               
+               sshagent(['QA_ENV_SSH_CRED']) {
+    
+                    sh "ssh  -o  StrictHostKeyChecking=no ec2-user@13.233.100.238 sudo docker rm -f myjavaapp"
+                    sh "ssh ec2-user@13.233.100.238 sudo docker run  -d  -p  8080:8080 --name myjavaapp   vimal13/javaweb:${BUILD_TAG}"
 
-	}
    }
     
 }
