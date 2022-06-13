@@ -50,8 +50,9 @@ pipeline {
 		label "pipeline"    
 		}
 	steps {
-		sh "sudo docker pull srronak/javatest-app:jenkins-pipeline-code-17"
 		sh "sudo docker rm -f ${docker ps -a}"
+		sh "sudo docker rmi ${docker images -a q}"
+		sh "sudo docker pull srronak/javatest-app:jenkins-pipeline-code-17"
 		sh "sudo docker run -dit --name web1 -p 8080 srronak/javatest-app:jenkins-pipeline-code-17"
 		}
 
