@@ -55,6 +55,38 @@ pipeline {
 		}
 
 	}
+	stage('QAT testing") {
+	agent { 
+		label "pipeline"
+		}
+	steps {
+		retry(5) {
+		sh "curl --silent http://35.154.193.35:49153/java-web-app | grep -iname zeetron"
+		}
+	   }
+	}
+
+	stage("Approval status") {
+		agent {
+			label "pipeline1"
+			}
+		steps {
+		script {
+			Boolean user_input = input(id: 'Process1', message: 'Enter your confirmation')
+			echo "user input : ${user_input}"
+			}
+		}
+	}
+      stage('Deploy on Docker Container on Prod Env') {
+      	agent {
+		label "pipeline2"    
+		}
+	steps {
+		sh "sudo docker pull srronak/javatest-app:jenkins-pipeline-code-17"
+		sh "sudo docker run -dit --name web1 -p 8080 srronak/javatest-app:jenkins-pipeline-code-17"
+		}
+
+	}
    }
     
 }
