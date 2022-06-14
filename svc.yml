@@ -6,7 +6,7 @@ metadata:
     app:  myapp-service
 spec:
   selector:
-    app: myjavawebapp
+    app: kops-deploy
   type: NodePort
   ports:
     - nodePort: 25000
