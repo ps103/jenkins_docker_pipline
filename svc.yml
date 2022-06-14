@@ -9,6 +9,6 @@ spec:
     app: kops-deploy
   type: NodePort
   ports:
-    - nodePort: 25000
+    - nodePort: 30000
       port: 81
       targetPort: 81
