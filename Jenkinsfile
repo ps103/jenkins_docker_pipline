@@ -7,7 +7,7 @@ pipeline {
 	    	label "pipeline"
 		}
             steps {
-                git 'https://github.com/sr98877/pipeline-code.git'
+                git 'https://github.com/gouravaas/pipeline_code.git'
             }
             
         }
@@ -28,7 +28,7 @@ pipeline {
 	    
             steps {
 		// sh 'pwd'
-		 sh "sudo docker build -t srronak/javatest-app:${BUILD_TAG} ."
+		 sh "sudo docker build -t Gouravaas/javatest-app:${BUILD_TAG} ."
 		}
 	} */       
         /*stage('Pushing image to docker hub') {
@@ -38,9 +38,9 @@ pipeline {
             steps {
 	        withCredentials([string(credentialsId: 'docker_hub_passwd', variable: 'Docker_hub_passwd_var')]) {
 
-		sh "sudo docker login -u srronak -p ${docker_hub_passwd_var}"
+		sh "sudo docker login -u Gouravaas -p ${docker_hub_passwd_var}"
 		}
-		//sh "sudo docker push srronak/javatest-app:${BUILD_TAG}"
+		//sh "sudo docker push Gouravaas/javatest-app:${BUILD_TAG}"
 	}        
    
       }*/
@@ -51,8 +51,8 @@ pipeline {
 	steps {
 		sh "sudo docker rm -f web1"
 		//sh "sudo docker rmi ${docker images -a q}"
-		// sh "sudo docker pull srronak/javatest-app:jenkins-pipeline-code-17"
-		sh "sudo docker run -dit --name web1 -p 49153:8080 srronak/javatest-app:jenkins-pipeline-code-17"
+		// sh "sudo docker pull Gouravaas/javatest-app:jenkins-pipeline-code-17"
+		sh "sudo docker run -dit --name web1 -p 49153:8080 Gouravaas/javatest-app:jenkins-pipeline-code-17"
 		}
 
 	}
@@ -87,7 +87,7 @@ pipeline {
                sshagent(['ec2-access-access-cred']) {
     
                     //sh "ssh  -o  StrictHostKeyChecking=no ec2-user@15.207.106.62 sudo docker rm -f web1"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@15.207.106.62 sudo docker run  -d  -p  49153:8080 --name web1 srronak/javatest-app:jenkins-pipeline-code-17"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@15.207.106.62 sudo docker run  -d  -p  49153:8080 --name web1 Gouravaas/javatest-app:jenkins-pipeline-code-17"
 		         }
 		}
    	}
